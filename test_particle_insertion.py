@@ -6,7 +6,7 @@ import os
 def list_slice_2_str(lis, number): 
   """
   takes a list of which each member is a line from a gromacs .gro trajectory file
-  and turns it into a string which can be processed further
+  and turns a single line from 1 member list into a string which can be processed further
   """
   line_contents_a = list_lines[number - 1: number]
   line_str = ', '.join(map(str, line_contents_a))
