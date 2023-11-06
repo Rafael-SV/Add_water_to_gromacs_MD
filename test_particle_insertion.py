@@ -24,7 +24,7 @@ print "importing .gro file"
 
 trj_out = open('test_out.gro', 'w')
 trj_raw = open('tpic_test.gro', 'r')
-# uncomment the following lines and comment out the 2 prev ones when reading command line arguments instead of hardcoded test input files
+# uncomment the following lines and comment out the 2 prev ones when reading command line arguments for I/O files instead of hardcoded test input files
 # trj_out = open(sys.argv[2], 'w')
 # trj_raw = open(sys.argv[1], 'r' )
 list_lines = trj_raw.read().splitlines()
@@ -42,6 +42,7 @@ aa_2_no = raw_input( "which amino acid to take second coordinates from? (please 
 aa_2_atom_no = raw_input( "which atom in that amino acid to take coordinate of? (please use caps)     ")
 aa_3_no = raw_input( "which residue to take third coordinates from? (use the form 103ALA)            ")
 aa_3_atom_no = raw_input( "which atom in that residue to take coordinates of? (use caps)                ")
+
 # some housekeeping to keep the correct format of the input and output files 
 # must make sure the correct number of particles, and frames is written
 old_particle_no = list_lines[1]
@@ -56,9 +57,10 @@ print "number of frames = {} ".format(no_of_frames)
 old_last_residue_no = list_lines[(no_of_original_lines - 2)].translate(None, 'CLNASOL').split()[0]
 new_last_residue_no = int(old_last_residue_no) + 1
 print 'original last residue number = {} , new last residue number = {} '.format(old_last_residue_no, new_last_residue_no)
+
 # make generator from the list composed of the lines in the input file and indices
+# then iterate over generator to make individual strings of each list member (ie each line in the list is now a string)
 gen = (n for n, y in enumerate(list_lines))
-# iterate over generator to make individual strings of each list member (ie each line in the list is now a string)
 for iter_1_no in gen:
   line_str_a = list_slice_2_str(list_lines, iter_1_no) 
   if line_str_a == str(old_particle_no):
