@@ -1,5 +1,5 @@
-# script to create acceptable .gro file for processing into tpic inp trajectory from .gro format trajectory by inserting water midway between 3 atom
-# in the protein
+# script to create acceptable .gro file for processing into tpic inp trajectory from .gro format trajectory by inserting water midway between 3 atom in the protein
+# user input system args must be in increasing order... 100ALA must come before 101ALA2
 import sys
 import math
 import os
@@ -13,7 +13,8 @@ def list_slice_2_str(lis, number):
   return line_str
 def return_frame_no(number):
   """
-  returns which frame of the gro file is being processed"
+  returns which frame of the gro file is being processed
+  """
   for x in range(1, (no_of_frames + 1)): 
     if (x * lines_per_frame) > number:
       current_frame_no = x
@@ -67,7 +68,8 @@ for iter_1_no in gen:
   if line_str_a.startswith(aa_1_no, 2) and line_str_a.startswith(aa_1_atom_no, 13):
     current_frame_no = return_frame_no(iter_1_no)
     print 'current frame is {}'.format(str(current_frame_no))
-    atom_a_line = line_str_a segments_a = atom_a_line.split()
+    atom_a_line = line_str_a
+    segments_a = atom_a_line.split()
     print "atom a line = {} ".format(atom_a_line)
     for iter_2_num in range(1, 1000000): 
       line_str_b = list_slice_2_str(list_lines, iter_1_no + iter_2_num)
