@@ -22,11 +22,11 @@ def return_frame_no(number):
 # import file and read each line into list
 print "importing .gro file"
 
-trj_out = open('test_out.gro', 'w')
-trj_raw = open('tpic_test.gro', 'r')
-# uncomment the following lines and comment out the 2 prev ones when reading command line arguments for I/O files instead of hardcoded test input files
-# trj_out = open(sys.argv[2], 'w')
-# trj_raw = open(sys.argv[1], 'r' )
+# trj_out = open('test_out.gro', 'w')
+# trj_raw = open('tpic_test.gro', 'r')
+# uncomment the 2 prev ones when using hardcoded test input files instead of reading command line arguments for I/O files
+trj_out = open(sys.argv[2], 'w')
+trj_raw = open(sys.argv[1], 'r' )
 list_lines = trj_raw.read().splitlines()
 trj_raw.close()
 
